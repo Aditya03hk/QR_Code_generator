@@ -3,11 +3,11 @@
   <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css?family=Poppins&display=swap" rel="stylesheet" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='style.css') }}"
+    />
     <title>QR Code Generator</title>
   </head>
   <body>
@@ -27,8 +27,16 @@
 
         {% if data %}
         <div class="generated">
-          <img src="{{data}}" alt="Generated QR Code" />
+          <img id="qrImage" src="{{ data }}" alt="Generated QR Code" />
           <p>Here is the QR code generated for you.</p>
+          <form action="/download_qr" method="POST">
+            <input
+              type="hidden"
+              name="link"
+              value="{{ request.form.get('link') }}"
+            />
+            <button type="submit">Download QR Code</button>
+          </form>
         </div>
         {% endif %}
       </div>
