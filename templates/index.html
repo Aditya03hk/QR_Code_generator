@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css?family=Poppins&display=swap" rel="stylesheet" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <title>QR Code Generator</title>
+  </head>
+  <body>
+    <header>
+      <div class="container">
+        <h1>QR Code Generator</h1>
+        <p>Insert a link below to generate a QR code</p>
+      </div>
+    </header>
+
+    <main>
+      <div class="container">
+        <form action="/" method="POST">
+          <input type="text" name="link" placeholder="Enter URL here..." />
+          <button type="submit">Generate QR</button>
+        </form>
+
+        {% if data %}
+        <div class="generated">
+          <img src="{{data}}" alt="Generated QR Code" />
+          <p>Here is the QR code we generated for you</p>
+        </div>
+        {% endif %}
+      </div>
+    </main>
+
+    <footer>
+      <div class="container">
+        <p>© QR Code Generator By Aditya</p>
+      </div>
+    </footer>
+  </body>
+</html>
